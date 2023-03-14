@@ -32,18 +32,68 @@
         <div id="bodyConfig">
 
             <div id="geralConfig">
+                
+                <div id="timeSelectContent">
+
+                    <h6> Select how much time per round </h6>
+                    <div class="contentSelect">
+                        <select id="timeSelect">
+                            <option value="3Min">3 minutos</option>
+                            <option value="5Min">5 minutos</option>
+                            <option value="10Min">10 minutos</option>
+                            <option value="15Min">15 minutos</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div id="wordsNumber">
+
+                    <h6> Select the number of words per player </h6>
+                    <div class="contentSelect">
+                        <select id="wordsSelect">
+                            <option value="3Words">3 palavras</option>
+                            <option value="4Words">4 palavras</option>
+                            <option value="5Words">5 palavras</option>
+                            <option value="6Words">6 palavras</option>
+                            <option value="7Words">7 palavras</option>
+                            <option value="8Words">8 palavras</option>
+                            <option value="9Words">9 palavras</option>
+                            <option value="10Words">10 palavras</option>
+                        </select>
+                    </div>
+
+                </div>
 
             </div>
 
             <div id="wordsPlayer">
 
+                <button id="confirmButtom" name="confirm" onclick="confirmTimeWords()"> Confirm Time and Words</button>
+
+                <div id="headerWords">
+                    <h6 id="h6HeaderWords">Player 1, write your words!</h6>
+                </div>
+
+                <div id="bodyWords">
+                    <input class="textInput" type="text" value="Word 1" >
+                    <input class="textInput" type="text" value="Word 2" >
+                    <input class="textInput" type="text" value="Word 3" >
+                </div>
+
+                <div id="footerWords">
+                    <button class="wordsButtom" id="cancelbutton" onclick="cancelconfirmTimeWordsPlayer1()"> Cancel </button>
+                    <button class="wordsButtom" id="confirmbutton" onclick="player1append()"> Confirm </button>
+                    
+                </div>
+                
             </div>
 
         </div>
 
         <div id="footerConfig">
-            <button class="footerButtom" onclick="">Back</button>
-            <button class="footerButtom" onclick="">Next</button>
+            <button class="footerButtom" onclick="configGameToPlay()">Back</button>
+            <button class="footerButtom" onclick="confirmconfirmTimeWords()">Next</button>
         </div>
 
     </div>
