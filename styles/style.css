@@ -335,7 +335,7 @@ select{
 
 #playScream{
     height: 0px;
-    width: 500px;
+    width: 0px;
     background-color:aliceblue;
     display: flex;
     justify-content: flex-start;
@@ -348,3 +348,48 @@ select{
 
     display: none;
 }
+
+#PSheader{
+    display: flex;
+    width: 100%;
+    height: 100px;
+    /* background-color: red; */
+    justify-content: space-between;
+    align-items: center;
+    display: none;
+}
+
+#playerTime{
+    font-family: sans-serif;
+    font-size: 35px;
+    margin-left: 15px;
+}
+
+#timerBox{
+    /* background-color: blue; */
+    margin-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 2px black;
+}
+
+#timerContent{
+    font-family: sans-serif;
+    color: black;
+    font-size: 25px;
+}
+
+#PSbody{
+    display: flex;
+    
+    display: none;
+}
+
+#PSfooter{
+    display: flex;
+    display: none;
+}
+

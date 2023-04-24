@@ -315,22 +315,32 @@ function play() {
     document.getElementById("bodyConfig").style.display = 'none';
     document.getElementById("footerConfig").style.display = 'none';
     document.getElementById('contentConfig').style.height = '0';
+    document.getElementById('contentConfig').style.width = '0';
 
-    
     setTimeout(function(){
-        document.getElementById('contentConfig').style.display = 'none';
         document.getElementById("playScream").style.display = 'flex';
     }, 400);
 
     setTimeout(function(){
-        document.getElementById("playScream").style.height = '500px';
-    }, 450);
+        document.getElementById('contentConfig').style.display = 'none';
+        document.getElementById("playScream").style.height = '800px';
+        document.getElementById("playScream").style.width = '1000px';
+    }, 500);
 
     setTimeout(function(){
         document.getElementById("PSheader").style.display = 'flex';
         document.getElementById("PSbody").style.display = 'flex';
         document.getElementById("PSfooter").style.display = 'flex';
     }, 900);
+
+    setTimeout(function(){
+
+        d = 0;
+        s = 0;
+
+        document.getElementById("timerContent").innerText = time + ":" + d + s;
+
+    },1000)
 
     console.log(words , time)
 
