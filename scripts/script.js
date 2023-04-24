@@ -95,8 +95,6 @@ function confirmTimeWords() {
     wordsSelect.disabled = true;
     timeSelect.disabled = true;
 
-    
-
 }
 
 function cancelconfirmTimeWordsPlayer1() {
@@ -312,6 +310,27 @@ function play() {
     )
 
     }
+
+    document.getElementById('headerConfig').style.display = 'none';
+    document.getElementById("bodyConfig").style.display = 'none';
+    document.getElementById("footerConfig").style.display = 'none';
+    document.getElementById('contentConfig').style.height = '0';
+
+    
+    setTimeout(function(){
+        document.getElementById('contentConfig').style.display = 'none';
+        document.getElementById("playScream").style.display = 'flex';
+    }, 400);
+
+    setTimeout(function(){
+        document.getElementById("playScream").style.height = '500px';
+    }, 450);
+
+    setTimeout(function(){
+        document.getElementById("PSheader").style.display = 'flex';
+        document.getElementById("PSbody").style.display = 'flex';
+        document.getElementById("PSfooter").style.display = 'flex';
+    }, 900);
 
     console.log(words , time)
 
