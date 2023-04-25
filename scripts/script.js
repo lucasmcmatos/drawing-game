@@ -233,7 +233,6 @@ function player1append() {
     document.getElementById('confirmbutton').setAttribute('onclick' , 'play()')
     document.getElementById('confirmbutton').innerText = 'Play'
 
-    console.log(words)
 
     time = parseInt(document.getElementById('timeSelect').value.slice(0,-3));
 }
@@ -341,7 +340,6 @@ function play() {
 
     updatedWord = words[Math.floor(Math.random()*Accountant)]
 
-    console.log(words , time ,  updatedWord)
 
 }
 
@@ -353,8 +351,18 @@ function start() {
 
     time2 = time;
 
+    document.querySelector("#tela").style.display = "flex";
+    document.querySelector("#tela").style.position = "absolute";
+    setTimeout(()=>{
+        document.querySelector("#tela").style.width = "700px";
+        document.querySelector("#tela").style.height = "500px";
+    }, 5)
+    
+
+
     document.getElementById("PSfooter").innerHTML = '<button id="buttonRestart" class="footerButtom" onclick="reload()">Reconfig</button>' + 
-                                                    '<button id="buttonNext" class="footerButtom" onclick="nextPlayer()">Next Player</button>'
+                                                    '<button id="buttonNext" class="footerButtom" onclick="nextPlayer()">Next Player</button>' +
+                                                    '<button id="buttonClear" class="footerButtom" onclick="clearScream()">Clear</button>'
 
     a = setInterval(function(){
         
@@ -400,7 +408,7 @@ function start() {
     },1000)
 
     setTimeout(()=>{
-        console.log("Deu certo para caralho!")
+        console.log("O tempo acabou, click em prox player")
     }, time2*60000 + 2000)
 }
 
@@ -414,6 +422,97 @@ function hiddenWord(){
 
 countPlayer = 1;
 debug = 0;
+
+const canvas = document.querySelector('canvas');
+
+canvas.width = 700;
+canvas.height = 500;
+
+const ctx = canvas.getContext("2d");
+
+function drawLine(ctx , line) {
+
+    const{
+        start,
+        end,
+        lineWidth,
+        lineCap,
+        strokeStyle
+    } = line
+
+    if(!start || !end) {
+        throw new Error("Start or end of line not define")
+    }
+
+    ctx.beginPath()
+    ctx.moveTo(line.start.x , line.start.y)
+    ctx.lineTo(line.end.x , line.end.y)
+    ctx.lineWidth = line.lineWidth
+    ctx.lineCap = line.lineCap 
+    ctx.strokeStyle = line.strokeStyle
+    ctx.stroke()
+}
+
+const line = {
+    start:{
+        x:0,
+        y:0
+    },end:{
+        x:0,
+        y:0
+    },
+    lineWidth: 8,
+    lineCap: "round",
+    lineJoin: "round",
+    strokeStyle: "white"
+
+}
+
+drawLine(ctx , line)
+
+let isPressed = false;
+let mouseDownPos = null;
+
+canvas.addEventListener("mousedown", function(e){
+
+    isPressed = true;
+
+    mouseDownPos = {
+        x: e.clientX - canvas.offsetLeft,
+        y: e.clientY - canvas.offsetTop
+    }
+
+    const line =  {
+        start: mouseDownPos,
+        end: mouseDownPos,
+    }
+
+    drawLine(ctx , line)
+
+})
+
+canvas.addEventListener("mouseup" , ()=>{
+    isPressed = false;
+
+})
+
+canvas.addEventListener("mousemove" , function(e){
+    
+    if(isPressed) {
+        let currentPos = {
+            x: e.clientX - canvas.offsetLeft,
+            y: e.clientY - canvas.offsetTop
+        }
+
+        let line = {
+            start: currentPos,
+            end: currentPos
+        }
+
+        drawLine(ctx , line)
+    }
+})
+
 
 function nextPlayer() {
 
@@ -535,4 +634,12 @@ function nextPlayer() {
         },1000)
     }
 
+
+    ctx.clearRect(0 , 0, canvas.width , canvas.height) 
+
 }
+
+function clearScream(){
+    ctx.clearRect(0 , 0, canvas.width , canvas.height)
+}
+
