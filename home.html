@@ -102,16 +102,22 @@
 
             <h1 id="playerTime">Player 1 is Drawing !</h1>
 
+            <div id="theWordBox" onmouseover="showWord()" onmouseleave="hiddenWord()">
+                <h1 id="theWord">The word</h1>
+            </div>
+
             <div id="timerBox">
                 <h1 id="timerContent"></h1>
             </div>
 
         </div>
-        <div id="PSbody"></div>
-        <div id="PSfooter"></div>
+        <div id="PSbody">
+        </div>
+        <div id="PSfooter">
+            <button id="buttonStart"  class="footerButtom" onclick="start()">Start</button>
+        </div>
     </div>
     
-
     <script src="./scripts/script.js"></script>
 </body>
 </html>

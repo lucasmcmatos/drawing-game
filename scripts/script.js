@@ -12,6 +12,8 @@ confirmButtom = document.getElementById('confirmButtom');
 wordsSelect = document.getElementById('wordsSelect');
 timeSelect = document.getElementById('timeSelect');
 h6HeaderWords = document.getElementById('h6HeaderWords');
+s = 0;
+d = 0;
 
 
 function playToConfigGame(){
@@ -236,6 +238,8 @@ function player1append() {
     time = parseInt(document.getElementById('timeSelect').value.slice(0,-3));
 }
 
+
+
 function play() {
 
     if (Accountant == 3){
@@ -333,10 +337,26 @@ function play() {
         document.getElementById("PSfooter").style.display = 'flex';
     }, 900);
 
-    s = 0;
-    d = 0;
+    document.getElementById("timerContent").innerText = time + ":" + d + s ;
 
-    setInterval(function(){
+    updatedWord = words[Math.floor(Math.random()*Accountant)]
+
+    console.log(words , time ,  updatedWord)
+
+}
+
+function reload(){
+    window.location.reload();
+}
+
+function start() {
+
+    time2 = time;
+
+    document.getElementById("PSfooter").innerHTML = '<button id="buttonRestart" class="footerButtom" onclick="reload()">Reconfig</button>' + 
+                                                    '<button id="buttonNext" class="footerButtom" onclick="nextPlayer()">Next Player</button>'
+
+    a = setInterval(function(){
         
         document.getElementById("timerContent").innerText = time + ":" + d + s ;
 
@@ -374,10 +394,145 @@ function play() {
                 }
             }
             
-        }
+        } 
+
 
     },1000)
 
-    console.log(words , time)
+    setTimeout(()=>{
+        console.log("Deu certo para caralho!")
+    }, time2*60000 + 2000)
+}
+
+function showWord(){
+    document.getElementById("theWord").innerText = updatedWord
+}
+
+function hiddenWord(){
+    document.getElementById("theWord").innerText = "The word"
+}
+
+countPlayer = 1;
+debug = 0;
+
+function nextPlayer() {
+
+    if (countPlayer == 1) {
+
+        clearInterval(a);
+
+        if (debug == 1) {
+            clearInterval(c);
+        }
+
+        updatedWord = words[Math.floor(Math.random()*Accountant)]
+        countPlayer = 2;
+        document.getElementById("playerTime").innerText = "Player 2 is Drawing !"
+
+        time = time2;
+        d = 0;
+        s = 0;
+
+        b = setInterval(function(){
+        
+            document.getElementById("timerContent").innerText = time + ":" + d + s ;
+    
+            if(time==0) {
+                if(d==0) {
+                    if (s==0) {
+                        clearInterval()
+                    } else {
+                        s = s - 1;
+                    } 
+                } else {
+                    if(s==0){
+                        d = d - 1;
+                        s = 9;
+                    } else {
+                        s = s - 1;
+                    }
+                }
+        
+            } else {
+                if(d==0){
+                    if(s==0){
+                        time = time - 1;
+                        d = 5;
+                        s = 9;
+                    } else {
+                        s = s - 1;
+                    }
+                } else {
+                    if (s==0){
+                        d = d - 1;
+                        s = 9;
+                    } else {
+                        s = s - 1;
+                    }
+                }
+                
+            } 
+    
+    
+        },1000)
+
+        debug = 0;
+
+    } else {
+
+        clearInterval(b);
+
+        updatedWord = words[Math.floor(Math.random()*Accountant)]
+        countPlayer = 1;
+        debug = 1;
+        document.getElementById("playerTime").innerText = "Player 1 is Drawing !"
+
+        time = time2;
+        d = 0;
+        s = 0;
+
+        c = setInterval(function(){
+        
+            document.getElementById("timerContent").innerText = time + ":" + d + s ;
+    
+            if(time==0) {
+                if(d==0) {
+                    if (s==0) {
+                        clearInterval()
+                    } else {
+                        s = s - 1;
+                    } 
+                } else {
+                    if(s==0){
+                        d = d - 1;
+                        s = 9;
+                    } else {
+                        s = s - 1;
+                    }
+                }
+        
+            } else {
+                if(d==0){
+                    if(s==0){
+                        time = time - 1;
+                        d = 5;
+                        s = 9;
+                    } else {
+                        s = s - 1;
+                    }
+                } else {
+                    if (s==0){
+                        d = d - 1;
+                        s = 9;
+                    } else {
+                        s = s - 1;
+                    }
+                }
+                
+            } 
+    
+    
+        },1000)
+    }
 
 }
