@@ -333,12 +333,48 @@ function play() {
         document.getElementById("PSfooter").style.display = 'flex';
     }, 900);
 
-    setTimeout(function(){
+    s = 0;
+    d = 0;
 
-        d = 0;
-        s = 0;
+    setInterval(function(){
+        
+        document.getElementById("timerContent").innerText = time + ":" + d + s ;
 
-        document.getElementById("timerContent").innerText = time + ":" + d + s;
+        if(time==0) {
+            if(d==0) {
+                if (s==0) {
+                    clearInterval()
+                } else {
+                    s = s - 1;
+                } 
+            } else {
+                if(s==0){
+                    d = d - 1;
+                    s = 9;
+                } else {
+                    s = s - 1;
+                }
+            }
+    
+        } else {
+            if(d==0){
+                if(s==0){
+                    time = time - 1;
+                    d = 5;
+                    s = 9;
+                } else {
+                    s = s - 1;
+                }
+            } else {
+                if (s==0){
+                    d = d - 1;
+                    s = 9;
+                } else {
+                    s = s - 1;
+                }
+            }
+            
+        }
 
     },1000)
 
